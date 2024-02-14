@@ -34,3 +34,15 @@ Team 2 is focused on the functionality and performance of the application. Featu
 - List of features, and the team members assigned
 - The commit history of the main branch for your repository
 - The names of your team members, and which team they were on
+
+///////////////////////////////
+
+Potential features (frontend)
+1. Create different files to contain notes
+2. Each note taken should contain the date and time when it was created
+3. Create different directories for different subjects, days, etc.
+4. A files's contents should be searchable and results should print the corresponding note(s) and their date/time
+
+stretch features:
+1. specify filepath
+2. Editing previous notes (Dr. Musgrave advises against this)
