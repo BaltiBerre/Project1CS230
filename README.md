@@ -46,3 +46,6 @@ Potential features (frontend)
 stretch features:
 1. specify filepath
 2. Editing previous notes (Dr. Musgrave advises against this)
+
+Frontend: Balti & Kunga
+Backend: Drew & Riker
