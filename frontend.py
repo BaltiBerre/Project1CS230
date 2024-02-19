@@ -1,3 +1,5 @@
+from backend import note
+
 class NoteTakingApp:
     def __init__(self):
         self.notes = []  # Placeholder for notes storage
