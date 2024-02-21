@@ -7,5 +7,19 @@ def viewNotes():
     f.seek(0)
     for line in f:
         print(line)
+    f.close()
 
-viewNotes()
+
+def clearNotes():
+    f = open("notes.txt", "w")
+    f.truncate()
+    f.close()
+
+def replaceNotes(fileName):
+    f = open("notes.txt", "r+")
+    InputFile = open(fileName, "r+")
+    f.truncate(0)
+    lines = InputFile.readlines()
+    f.writelines(lines)
+    InputFile.close()
+
