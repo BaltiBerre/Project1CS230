@@ -15,13 +15,15 @@ class NoteTakingApp:
 
     def run(self):
         while True:
+            note1 = note()
+
             choice = self.display_menu()
             if choice == '1':
-                self.create_note()
+                note1.create_note(note1)
             elif choice == '2':
-                self.view_notes()
+                note1.view_notes(note1)
             elif choice == '3':
-                self.search_notes()
+                note1.search_notes(note1)
             elif choice == '4':
                 print("Thank you for using the Note-Taking App.")
                 break
