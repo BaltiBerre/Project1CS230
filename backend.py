@@ -9,6 +9,7 @@ class note:
         self.date = None
         self.time = None
         self.notes = None
+        self.file_path = "C:\\Users\\atbfi\\Development\\Project1CS230\\notes.txt"
     
     def create_note(self):
         self.date = datetime.datetime.now()
@@ -26,7 +27,10 @@ class note:
 
     def view_notes(self):
         print("Viewing all notes:\n")
-        print(self.notes)
+        with open(self.file_path, 'r') as file:
+            file.seek(0)
+            for line in file:
+                print(line)
 
     def search_notes(self):
         print("Function unavailable")

@@ -19,11 +19,11 @@ class NoteTakingApp:
 
             choice = self.display_menu()
             if choice == '1':
-                note1.create_note(note1)
+                note1.create_note()
             elif choice == '2':
-                note1.view_notes(note1)
+                note1.view_notes()
             elif choice == '3':
-                note1.search_notes(note1)
+                note1.search_notes()
             elif choice == '4':
                 print("Thank you for using the Note-Taking App.")
                 break
