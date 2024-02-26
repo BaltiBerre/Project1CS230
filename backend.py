@@ -9,17 +9,11 @@ class note:
         self.date = None
         self.time = None
         self.notes = None
-        #self.file_path = "C:\\Users\\atbfi\\Development\\Project1CS230\\notes.txt"
-        self.file_path = None
+        self.file_path = "C:\\Users\\atbfi\\Development\\Project1CS230\\notes.txt"
     
     def create_note(self):
         self.date = datetime.datetime.now()
         self.notes = input("Input note: ")
-        f = open("notes.txt", "a")
-        f.close()
-
-        #self.file_path = Path.cwd()
-        self.file_path = os.path.abspath(notes.txt)
 
         # Check if the file exists. If not, create it.
         if not os.path.exists(self.file_path):
