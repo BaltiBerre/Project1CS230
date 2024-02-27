@@ -34,3 +34,16 @@ class note:
 
     def search_notes(self):
         print("Function unavailable")
+
+    def clearNotes(self):
+        f = open(self.file_path, "w")
+        f.truncate()
+        f.close()
+
+    def replaceNotes(self, fileName):
+        f = open(self.file_path, "r+")
+        InputFile = open(fileName, "r+")
+        f.truncate(0)
+        lines = InputFile.readlines()
+        f.writelines(lines)
+        InputFile.close()
