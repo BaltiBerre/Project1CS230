@@ -90,17 +90,41 @@ class Note:
         search_query = input("Enter search term to delete the note: ")
         with open(self.file_path, 'r') as file:
             lines = file.readlines()
-        with open(self.file_path, 'w') as file:
-            note_found = False
-            for line in lines:
-                if search_query.lower() in line.lower():
-                    note_found = True
-                    continue  # Skip writing this note
-                file.write(line)
-            if note_found:
-                print("Note deleted.")
+
+        new_lines = []
+        note_found = False
+        skip_lines = False
+        temp_lines = []
+
+        for line in lines:
+            if "Date:" in line:  # Start of a new note
+                if note_found:  # If the previous note was the one to delete
+                    print(''.join(temp_lines))  # Display the note
+                    confirm = input("Are you sure you want to delete this note? (y/n): ")
+                    if confirm.lower() == 'y':
+                        skip_lines = True  # Confirm deletion
+                        note_found = False  # Reset flag
+                    else:
+                        new_lines.extend(temp_lines)  # Keep the note
+                        skip_lines = False  # Do not skip this note
+                elif not skip_lines:  # If it's not the note to delete
+                    new_lines.extend(temp_lines)
+                temp_lines = [line]  # Start collecting lines for the new note
+            elif search_query.lower() in line.lower() and not note_found:
+                note_found = True  # Mark the note for potential deletion
             else:
-                print("No matching note found.")
+                temp_lines.append(line)  # Add lines to the current note
+
+        if note_found:  # Check the last note
+            print(''.join(temp_lines))  # Display the note
+            confirm = input("Are you sure you want to delete this note? (y/n): ")
+            if confirm.lower() != 'y':
+                new_lines.extend(temp_lines)  # Keep the note if not confirmed for deletion
+
+        with open(self.file_path, 'w') as file:
+            file.writelines(new_lines)
+
+        print("Note deleted." if skip_lines else "No matching note found or deletion cancelled.")
 
     def append_to_note(self):
         search_query = input("Enter search term to find the note to append to: ")
