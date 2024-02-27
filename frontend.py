@@ -9,7 +9,9 @@ class NoteTakingApp:
         print("1. Create a new note")
         print("2. View notes")
         print("3. Search notes")
-        print("4. Exit")
+        print("4. Clear notes")
+        #print("5. Replace notes")
+        print("5. Exit")
         choice = input("Enter your choice: ")
         return choice
 
@@ -25,6 +27,8 @@ class NoteTakingApp:
             elif choice == '3':
                 note1.search_notes()
             elif choice == '4':
+                note1.clearNotes()
+            elif choice == '5':
                 print("Thank you for using the Note-Taking App.")
                 break
             else:
