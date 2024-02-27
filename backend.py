@@ -9,7 +9,10 @@ class note:
         self.date = None
         self.time = None
         self.notes = None
-        self.file_path = "C:\\Users\\atbfi\\Development\\Project1CS230\\notes.txt"
+        pwd = os.getcwd()
+        self.file_path = pwd + "\\notes.txt"
+
+        #self.file_path = "C:\\Users\\atbfi\\Development\\Project1CS230\\notes.txt"
     
     def create_note(self):
         self.date = datetime.datetime.now()
@@ -34,3 +37,16 @@ class note:
 
     def search_notes(self):
         print("Function unavailable")
+
+    def clearNotes(self):
+        f = open(self.file_path, "w")
+        f.truncate()
+        f.close()
+
+    def replaceNotes(self, fileName):
+        f = open(self.file_path, "r+")
+        InputFile = open(fileName, "r+")
+        f.truncate(0)
+        lines = InputFile.readlines()
+        f.writelines(lines)
+        InputFile.close()
