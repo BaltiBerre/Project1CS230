@@ -1,6 +1,11 @@
 #frontend.py
-
+import os
 from backend import Note
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+# Constructs the path to the text file, assuming it's in the same directory
+replace_test_path = os.path.join(current_dir, 'replace_test.txt')
+
 
 class NoteTakingApp:
     def __init__(self):

@@ -5,13 +5,15 @@ import os
 import datetime
 
 class Note:
-    def __init__(self):
+    def __init__(self, file_path=None):
         self.date = None
         self.time = None
         self.notes = None
-        pwd = os.getcwd()
-        self.file_path = os.path.join(pwd, "notes.txt")  # Use os.path.join for cross-platform compatibility
-    
+        if file_path is None:
+            pwd = os.getcwd()
+            self.file_path = os.path.join(pwd, "notes.txt")
+        else:
+            self.file_path = file_path
     def create_note(self):
         self.date = datetime.datetime.now()
         self.notes = input("Input note: ")
@@ -50,12 +52,13 @@ class Note:
         f.close()
 
     def replaceNotes(self, fileName):
-        f = open(self.file_path, "r+")
-        InputFile = open(fileName, "r+")
-        f.truncate(0)
-        lines = InputFile.readlines()
-        f.writelines(lines)
-        InputFile.close()
+            # Ensure the file is opened and closed properly using with statement
+            with open(self.file_path, "r+") as f:
+                with open(fileName, "r+") as inputFile:
+                    f.truncate(0)  # Clear the file
+                    lines = inputFile.readlines()
+                    f.writelines(lines)
+
     
     def edit_note(self):
         search_query = input("Enter search term to find the note to edit: ")
