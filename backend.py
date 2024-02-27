@@ -92,52 +92,77 @@ class Note:
             lines = file.readlines()
 
         new_lines = []
-        note_found = False
-        skip_lines = False
-        temp_lines = []
-
+        temp_lines = []  # Temporary storage for current note being checked
+        note_found = False  # Flag to indicate if the note to delete has been found
         for line in lines:
-            if "Date:" in line:  # Start of a new note
-                if note_found:  # If the previous note was the one to delete
-                    print(''.join(temp_lines))  # Display the note
+            if "Date:" in line:  # Marks the start of a new note
+                if note_found:  # If the previous note was marked for deletion, ask for confirmation
+                    print(''.join(temp_lines), end='')  # Print the note for review
                     confirm = input("Are you sure you want to delete this note? (y/n): ")
                     if confirm.lower() == 'y':
-                        skip_lines = True  # Confirm deletion
-                        note_found = False  # Reset flag
-                    else:
-                        new_lines.extend(temp_lines)  # Keep the note
-                        skip_lines = False  # Do not skip this note
-                elif not skip_lines:  # If it's not the note to delete
+                        note_found = False  # Note is deleted, so reset the flag and do not add temp_lines to new_lines
+                        continue  # Skip adding this note's lines to new_lines
+                # If not deleting, add the accumulated lines for the previous note to new_lines
+                if not note_found:
                     new_lines.extend(temp_lines)
-                temp_lines = [line]  # Start collecting lines for the new note
-            elif search_query.lower() in line.lower() and not note_found:
-                note_found = True  # Mark the note for potential deletion
+                temp_lines = [line]  # Start accumulating lines for the new note
             else:
-                temp_lines.append(line)  # Add lines to the current note
+                temp_lines.append(line)
+                if search_query.lower() in line.lower() and not note_found:
+                    note_found = True  # Mark this note for potential deletion
 
-        if note_found:  # Check the last note
-            print(''.join(temp_lines))  # Display the note
+        # After the loop, check if the last note was marked for deletion and ask for confirmation
+        if note_found:  # This handles the case where the last note in the file was marked for deletion
+            print(''.join(temp_lines), end='')  # Print the last note
             confirm = input("Are you sure you want to delete this note? (y/n): ")
             if confirm.lower() != 'y':
-                new_lines.extend(temp_lines)  # Keep the note if not confirmed for deletion
+                new_lines.extend(temp_lines)  # If not deleting, add the last note's lines to new_lines
 
         with open(self.file_path, 'w') as file:
             file.writelines(new_lines)
 
-        print("Note deleted." if skip_lines else "No matching note found or deletion cancelled.")
+        print("Note deleted." if note_found else "No matching note found or deletion cancelled.")
 
     def append_to_note(self):
-        search_query = input("Enter search term to find the note to append to: ")
-        append_text = input("Enter text to append: ")
-        with open(self.file_path, 'r+') as file:
-            lines = file.readlines()
-            file.seek(0)
-            for line in lines:
-                file.write(line)
-                if search_query.lower() in line.lower():
-                    file.write(f"{append_text}\n")
-            print("Text appended to note.")
+        while True:
+            search_query = input("Enter search term to find the note to append to: ")
+            append_text = input("Enter text to append: ")
+            note_found = False
+            append_position = None
 
+            with open(self.file_path, 'r+') as file:
+                lines = file.readlines()
+                file.seek(0)
+
+                for i, line in enumerate(lines):
+                    if search_query.lower() in line.lower():
+                        note_found = True
+                        print(''.join(lines[i:i+3]))  # Adjust according to your note structure
+                        confirm = input("Is this the note you want to append to? (y/n): ")
+                        if confirm.lower() == 'y':
+                            append_position = i  # Mark position to append text
+                            break
+                        else:
+                            print("Let's try again.")
+                            break  # Break out to search again based on new input
+                
+                if not note_found:
+                    print("No matching note found. Please try again.")
+                    continue  # Continue asking for a new search term
+                elif append_position is not None:
+                    # Append text to the confirmed note
+                    for j, line in enumerate(lines):
+                        if j == append_position:
+                            lines[j] = line.rstrip('\n') + " " + append_text + "\n"  # Append text to the note line
+
+                    file.seek(0)  # Go back to the start of the file
+                    file.truncate(0)  # Clear the file
+                    file.writelines(lines)  # Write the modified lines back to the file
+                    print("Text appended to note.")
+                    break  # Exit the loop if the note to append to has been confirmed
+
+
+        
     def export_notes(self, export_file_name):
         with open(self.file_path, 'r') as file:
             notes = file.read()
