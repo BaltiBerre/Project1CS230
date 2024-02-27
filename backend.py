@@ -63,6 +63,8 @@ class Note:
         f.close()
 
     def replaceNotes(self, fileName):
+            if fileName == "Cancel":
+                return
             # Ensure the file is opened and closed properly using with statement
             with open(self.file_path, "r+") as f:
                 with open(fileName, "r+") as inputFile:
@@ -164,6 +166,8 @@ class Note:
 
         
     def export_notes(self, export_file_name):
+        if export_file_name == "Cancel":
+            return
         with open(self.file_path, 'r') as file:
             notes = file.read()
         with open(export_file_name, 'w') as export_file:
@@ -171,6 +175,8 @@ class Note:
         print(f"Notes exported to {export_file_name}.")
 
     def import_notes(self, import_file_name):
+        if import_file_name == "Cancel":
+            return
         with open(import_file_name, 'r') as import_file:
             notes_to_import = import_file.read()
         with open(self.file_path, 'a') as file:
