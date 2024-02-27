@@ -8,7 +8,7 @@ Build a local note-taking app. The app should manage taking notes locally as a c
 
 ///////////////////////////////
 
-Potential features (frontend)
+Potential features
 1. Create different files to contain notes
 2. Each note taken should contain the date and time when it was created
 3. Create different directories for different subjects, days, etc.
@@ -23,17 +23,23 @@ Backend: Drew & Riker
 
 ///////////////////////////////
 
-[Frontend description goes here]
+The frontend.py file 
 
 ///////////////////////////////
 
-*The backend.py file contains functions for creating and viewing notes from a text file.
-*If the file itself is run, it will simply display "Hello World!". It is meant to contain
+* The backend.py file contains functions for creating and viewing notes from a text file.
+
+* If the file itself is run, it will simply display "Hello World!". It is meant to contain
 functions that are called by frontend.py.
-*The file consists of a single "note" class, which contains the following:
-    *A constructor that initializes empty variables to contain the date, time, notes, and
+
+* The file consists of a single "note" class, which contains the following:
+
+    * A constructor that initializes empty variables to contain the date, time, notes, and
     filepath of the receiving text file
-    *create_note(self), which gets the current system time, asks the user to input a note,
+
+    * create_note(self), which gets the current system time, asks the user to input a note,
     opens a file (creating one if it didn't already exist), and writing to it.
-    *view_notes(self), which prints the text file
-    *search_notes(self), which doesn't do anything yet
+
+    * view_notes(self), which prints the text file
+
+    * search_notes(self), which doesn't do anything yet
