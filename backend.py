@@ -36,15 +36,26 @@ class Note:
                 print(line)
 
     def search_notes(self):
-        search_query = input("Enter search query: ")
+        search_query = input("Enter search query: ").strip()
+        
+        # Handling empty search query
+        if not search_query:
+            print("Search query cannot be empty.")
+            return
+
         with open(self.file_path, 'r') as file:
-            notes = file.readlines()
+            notes = file.read().split("[End of note]\n")
+            found_notes = False
+
         for note in notes:
             if search_query.lower() in note.lower():
-                print(note)
-                break
-        else:
+                print(note.strip() + "\n[End of note]")
+                found_notes = True
+                # Continue to search through all notes instead of breaking after the first match
+        
+        if not found_notes:
             print("No notes found matching the query.")
+
 
     def clearNotes(self):
         f = open(self.file_path, "w")
