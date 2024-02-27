@@ -9,7 +9,8 @@ class note:
         self.date = None
         self.time = None
         self.notes = None
-        self.file_path = "C:\\Users\\atbfi\\Development\\Project1CS230\\notes.txt"
+        pwd = os.getcwd()
+        self.file_path = pwd + "\\notes.txt"
     
     def create_note(self):
         self.date = datetime.datetime.now()
