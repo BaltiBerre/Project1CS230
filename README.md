@@ -24,7 +24,7 @@ functions that are called by frontend.py.
         2. View notes (Drew)
         3. Search notes (Balti)
         4. Clear notes (Riker)
-        5. Replace notes (Balti)
+        5. Replace notes (Riker)
         6. Edit a note (Balti)
         7. Delete a specific note (Balti)
         8. Append to an existing note (Balti)
