@@ -23,7 +23,8 @@ class NoteTakingApp:
         print("8. Append to an existing note")
         print("9. Export notes")
         print("10. Import notes")
-        print("11. Exit")
+        print("11. Help")
+        print("12. Exit")
         choice = input("Enter your choice: ")
         return choice
 
@@ -55,6 +56,9 @@ class NoteTakingApp:
                 import_file_name = input("Enter the file name to import notes from: ")
                 note1.import_notes(import_file_name)
             elif choice == '11':
+                Hchoice = input("Which option do you need help with?\n")
+                note1.help(Hchoice)
+            elif choice == '12':
                 print("Thank you for using the Note-Taking App.")
                 break
             else:

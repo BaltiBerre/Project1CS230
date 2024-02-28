@@ -177,3 +177,34 @@ class Note:
             file.write(notes_to_import)
         print(f"Notes imported from {import_file_name}.")
 
+    
+    def help(self, Hchoice):
+        if Hchoice == '1':
+            print("\nOption",Hchoice,"Creates a new note in a text file placed in the current directory\n")
+        elif Hchoice == '2':
+            print("\nOption",Hchoice,"prints out the contents of the notes text file\n")
+        elif Hchoice == '3':
+            print("\nOption",Hchoice,"takes in a query and returns any notes containing the query\n")
+        elif Hchoice == '4':
+            print("\nOption",Hchoice,"clears all notes\n")
+        elif Hchoice == '5':
+            print("\nOption",Hchoice,"Takes in a note file and overwrites it onto the current note file\n")
+        elif Hchoice == '6':
+            print("\nOption",Hchoice,"Takes a query, returns a note, and prompts you for a new",
+                    "note to replace it with\n")
+        elif Hchoice == '7':
+            print("\nOption",Hchoice,"Takes a query and asks to delete the first matching note it finds\n")
+        elif Hchoice == '8':
+            print("\nOption",Hchoice,"Takes a query and prompts the user for text to",
+                    "add to the end of an existing note\n")
+        elif Hchoice == '9':
+            print("\nOption",Hchoice,"takes a file name and writes the current notes to that file\n")
+        elif Hchoice == '10':
+            print("\nOption",Hchoice,"takes a file name and writes the text in it to the current note file. (Please only",
+                    "use exported note files for this)\n")
+        elif Hchoice == '11':
+            print("\nOption",Hchoice,"The function you are currently using. Explains a specified function.\n")
+        elif Hchoice == '12':
+            print("\nOption",Hchoice,"Exits the progam, ending the running process\n")
+        else:
+            print("Invalid choice. Please try again.")
