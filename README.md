@@ -59,4 +59,4 @@ The program will then call the corresponding function in the backend.py file. Th
         12. Exit (No associated function)
 		    - Exits the program
         * Additional functionality for functions 5, 9 & 10 by Riker
-        * Additional research and assistance by Kunga
+        * Documentation and additional research by Kunga
