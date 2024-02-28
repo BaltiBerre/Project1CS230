@@ -41,7 +41,7 @@ class NoteTakingApp:
             elif choice == '4':
                 note1.clearNotes()
             elif choice == '5':
-                fileName = input("Enter the file name to replace notes with: ")
+                fileName = input("Enter the file name to replace notes with: (enter ``Cancel`` to exit)")
                 note1.replaceNotes(fileName)
             elif choice == '6':
                 note1.edit_note()
@@ -50,10 +50,10 @@ class NoteTakingApp:
             elif choice == '8':
                 note1.append_to_note()
             elif choice == '9':
-                export_file_name = input("Enter the file name to export notes to: ")
+                export_file_name = input("Enter the file name to export notes to: (enter ``Cancel`` to exit)")
                 note1.export_notes(export_file_name)
             elif choice == '10':
-                import_file_name = input("Enter the file name to import notes from: ")
+                import_file_name = input("Enter the file name to import notes from: (enter ``Cancel`` to exit)")
                 note1.import_notes(import_file_name)
             elif choice == '11':
                 Hchoice = input("Which option do you need help with?\n")
