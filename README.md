@@ -12,9 +12,9 @@ Backend : Andrew, Riker
 ---
 #### How to use
 
-1. ***Setup Environment****: Make sure Python is installed on your machine.
+1. **Setup Environment**: Make sure Python is installed on your machine.
 
-2. ***Run** **`backend.py`********: Navigate to the project's directory in your terminal or command prompt and execute the script by running:
+2. **Run** **`backend.py`** :  Navigate to the project's directory in your terminal or command prompt and execute the script by running:
 
 
     ```
